@@ -14,9 +14,9 @@ env = environ.Env()
 SECRET_KEY = "django-insecure-8njpfyx5*prym09h)^ea4#hf@n0i9ea1qsr$1^_iwvhmvp+-bp"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*.chbk.run']
 
 
 # Application definition
