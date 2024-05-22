@@ -19,7 +19,7 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path("", Home.as_view, name="Home"),
+    path("", Home.as_view(), name="Home"),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0)),
     path("admin/", admin.site.urls),
     path("calendar/", include("calendifa.urls")),

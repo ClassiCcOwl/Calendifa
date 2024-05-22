@@ -18,7 +18,6 @@ class NowView(APIView):
     def get(self, request, format=None):
 
         current_time = JalaliDateTime.now()
-        print(dir(current_time))
         formatted_response = {
             "status_code": status.HTTP_200_OK,
             "now": current_time.strftime("%c"),
