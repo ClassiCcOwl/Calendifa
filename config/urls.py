@@ -19,8 +19,26 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path("v1/status/", StatusView.as_view(), name="Status"),
-    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0)),
-    path("admin/", admin.site.urls),
-    path("v1/calendar/", include("calendifa.urls")),
+    path(
+        "swagger/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path(
+        "v1/status/",
+        StatusView.as_view(),
+        name="Status",
+    ),
+    path(
+        "redoc/",
+        schema_view.with_ui("redoc", cache_timeout=0),
+    ),
+    path(
+        "admin/",
+        admin.site.urls,
+    ),
+    path(
+        "v1/calendar/",
+        include("calendifa.urls"),
+    ),
 ]
