@@ -15,6 +15,7 @@ jobs:
         env:
           CHABOKAN_TOKEN: ${{ secrets.CHABOKAN_TOKEN }}
         run: |
+          copy requirements/base.txt ./requirements.txt
           npm install -g @chabokan.net/cli
           chabok login -t $CHABOKAN_TOKEN
           chabok deploy -s django-temp
