@@ -12,12 +12,15 @@ env = environ.Env()
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = "django-insecure-8njpfyx5*prym09h)^ea4#hf@n0i9ea1qsr$1^_iwvhmvp+-bp"
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = env(
+    "SECRET_KEY",
+    default="django-insecure-8njpfyx5*prym09h)^ea4#hf@n0i9ea1qsr$1^_iwvhmvp+-bp",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG", default=False)
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
 
 
 # Application definition
