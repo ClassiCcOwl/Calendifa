@@ -31,16 +31,22 @@ class JalaliNowContent(Jalali):
         self.pairs["day_of_week"] = self.current_time.weekday()
         self.pairs["utc"] = self.current_time.utcnow().to_gregorian()
 
+    def to_persian(self):
+        for key, value in self.pairs.items:
+            self.pairs[key] = digits.en_to_fa(str(value))
+
+        self.pairs["now"] = self.current_time.strftime("%c", locale="fa")
+
     def get_pairs(self):
         return self.pairs
 
 
-def digit_to_persian(en_obj: dict):
-    fa_obj = {}
-    for key, value in en_obj.items():
-        fa_obj[key] = digits.en_to_fa(str(value))
+# def digit_to_persian(en_obj: dict):
+#     fa_obj = {}
+#     for key, value in en_obj.items():
+#         fa_obj[key] = digits.en_to_fa(str(value))
 
-    return fa_obj
+#     return fa_obj
 
 
 class StatusView(APIView):
@@ -63,7 +69,7 @@ class NowView(APIView):
 class NowPersianDigitView(APIView):
     def get(self, request, format=None):
         jalali_responsse = JalaliNowContent()
+        jalali_responsse.to_persian()
         formatted_response = jalali_responsse.get_pairs()
-        formatted_response = digit_to_persian(formatted_response)
         formatted_response["status_code"] = status.HTTP_200_OK
         return Response(formatted_response, status=status.HTTP_200_OK)
