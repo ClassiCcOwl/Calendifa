@@ -12,5 +12,6 @@ It's using:
 ## TODO
 
 - [x] Get current time and date
+- [x] Add persian view response
 - [ ] Add formating features
 - [ ] Add jalali calendar
