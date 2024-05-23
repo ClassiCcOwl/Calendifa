@@ -7,7 +7,7 @@ It's using:
 - django
 - django rest-framework
 - drf-yasg
-
+- persiantools
 
 ## TODO
 
