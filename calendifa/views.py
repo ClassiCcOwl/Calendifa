@@ -51,8 +51,6 @@ class StatusView(APIView):
 
 
 class NowView(APIView):
-    throttle_classes = [UserRateThrottle]
-
     def get(self, request, format=None):
         jalali_responsse = JalaliNowContent()
         formatted_response = jalali_responsse.get_pairs()
@@ -61,7 +59,6 @@ class NowView(APIView):
 
 
 class NowPersianDigitView(APIView):
-    throttle_classes = [UserRateThrottle]
 
     def get(self, request, format=None):
         jalali_responsse = JalaliNowContent()
