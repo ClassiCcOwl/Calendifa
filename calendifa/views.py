@@ -38,7 +38,7 @@ class JalaliNowContent(Jalali):
 def digit_to_persian(en_obj: dict):
     fa_obj = {}
     for key, value in en_obj.items():
-        fa_obj[key] = digits.en_to_fa(value)
+        fa_obj[key] = digits.en_to_fa(str(value))
 
     return fa_obj
 
