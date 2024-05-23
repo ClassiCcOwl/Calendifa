@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from persiantools.jdatetime import JalaliDateTime
 from persiantools import digits
 from rest_framework import status
+from rest_framework.throttling import UserRateThrottle
 
 
 class Jalali:
@@ -50,6 +51,8 @@ class StatusView(APIView):
 
 
 class NowView(APIView):
+    throttle_classes = [UserRateThrottle]
+
     def get(self, request, format=None):
         jalali_responsse = JalaliNowContent()
         formatted_response = jalali_responsse.get_pairs()
@@ -58,6 +61,8 @@ class NowView(APIView):
 
 
 class NowPersianDigitView(APIView):
+    throttle_classes = [UserRateThrottle]
+
     def get(self, request, format=None):
         jalali_responsse = JalaliNowContent()
         jalali_responsse.to_persian()
