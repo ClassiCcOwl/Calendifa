@@ -40,14 +40,6 @@ class JalaliNowContent(Jalali):
         return self.pairs
 
 
-# def digit_to_persian(en_obj: dict):
-#     fa_obj = {}
-#     for key, value in en_obj.items():
-#         fa_obj[key] = digits.en_to_fa(str(value))
-
-#     return fa_obj
-
-
 class StatusView(APIView):
     def get(self, request, format=None):
         formatted_response = {
