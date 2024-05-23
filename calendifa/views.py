@@ -4,6 +4,35 @@ from persiantools.jdatetime import JalaliDateTime
 from rest_framework import status
 
 
+class Jalali:
+    def __init__(self) -> None:
+        self.current_time = JalaliDateTime.now()
+        self.pairs = {}
+
+
+class JalaliNowContent(Jalali):
+    def __init__(self) -> None:
+        self.make_pairs()
+
+    def make_pairs(self):
+        self.pairs["now"] = self.current_time.strftime("%c")
+        self.pairs["day"] = self.current_time.day
+        self.pairs["date"] = self.current_time.date()
+        self.pairs["time"] = self.current_time.time()
+        self.pairs["month"] = self.current_time.month
+        self.pairs["year"] = self.current_time.year
+        self.pairs["timestamp"] = self.current_time.timestamp()
+        self.pairs["hour"] = self.current_time.hour
+        self.pairs["minute"] = self.current_time.minute
+        self.pairs["second"] = self.current_time.second
+        self.pairs["week_of_year"] = self.current_time.week_of_year()
+        self.pairs["day_of_week"] = self.current_time.weekday()
+        self.pairs["utc"] = self.current_time.utcnow().to_gregorian()
+
+    def get_pairs(self):
+        return self.pairs
+
+
 class StatusView(APIView):
     def get(self, request, format=None):
         formatted_response = {
@@ -16,21 +45,24 @@ class StatusView(APIView):
 class NowView(APIView):
     def get(self, request, format=None):
 
-        current_time = JalaliDateTime.now()
-        formatted_response = {
-            "status_code": status.HTTP_200_OK,
-            "now": current_time.strftime("%c"),
-            "day": current_time.day,
-            "date": current_time.date(),
-            "time": current_time.time(),
-            "month": current_time.month,
-            "year": current_time.year,
-            "timestamp": current_time.timestamp(),
-            "hour": current_time.hour,
-            "minute": current_time.minute,
-            "second": current_time.second,
-            "week_of_year": current_time.week_of_year(),
-            "day_of_week": current_time.weekday(),
-            "utc": current_time.utcnow().to_gregorian(),
-        }
+        jalali_responsse = JalaliNowContent()
+        formatted_response = jalali_responsse.get_pairs()
+        formatted_response["status_code"] = status.HTTP_200_OK
+        # current_time = JalaliDateTime.now()
+        # formatted_response = {
+        #     "status_code": status.HTTP_200_OK,
+        #     "now": current_time.strftime("%c"),
+        #     "day": current_time.day,
+        #     "date": current_time.date(),
+        #     "time": current_time.time(),
+        #     "month": current_time.month,
+        #     "year": current_time.year,
+        #     "timestamp": current_time.timestamp(),
+        #     "hour": current_time.hour,
+        #     "minute": current_time.minute,
+        #     "second": current_time.second,
+        #     "week_of_year": current_time.week_of_year(),
+        #     "day_of_week": current_time.weekday(),
+        #     "utc": current_time.utcnow().to_gregorian(),
+        # }
         return Response(formatted_response, status=status.HTTP_200_OK)
