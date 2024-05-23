@@ -12,6 +12,7 @@ class Jalali:
 
 class JalaliNowContent(Jalali):
     def __init__(self) -> None:
+        super.__init__()
         self.make_pairs()
 
     def make_pairs(self):
