@@ -32,9 +32,8 @@ class JalaliNowContent(Jalali):
         self.pairs["utc"] = self.current_time.utcnow().to_gregorian()
 
     def to_persian(self):
-        for key, value in self.pairs.items:
+        for key, value in self.pairs.items():
             self.pairs[key] = digits.en_to_fa(str(value))
-
         self.pairs["now"] = self.current_time.strftime("%c", locale="fa")
 
     def get_pairs(self):
