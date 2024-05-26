@@ -9,6 +9,9 @@ It's using:
 - drf-yasg
 - persiantools
 
+
+Now its available on [api.calendifa.ir](https://api.calendifa.ir)
+
 ## TODO
 
 - [x] Get current time and date
