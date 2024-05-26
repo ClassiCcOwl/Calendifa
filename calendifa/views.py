@@ -20,7 +20,7 @@ class JalaliNowContent(Jalali):
     def make_pairs(self):
         self.pairs["now"] = self.current_time.strftime("%c")
         self.pairs["day"] = self.current_time.day
-        self.pairs["date"] = self.current_time.date()
+        self.pairs["date"] = self.current_time.strftime("%Y-%m-%d")
         self.pairs["time"] = self.current_time.time()
         self.pairs["month"] = self.current_time.month
         self.pairs["year"] = self.current_time.year
