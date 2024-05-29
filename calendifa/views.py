@@ -1,9 +1,12 @@
 from rest_framework.views import APIView
+from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from persiantools.jdatetime import JalaliDateTime
 from persiantools import digits
 from rest_framework import status
 from rest_framework.throttling import UserRateThrottle
+
+from . import serializers
 
 
 class Jalali:
@@ -50,12 +53,23 @@ class StatusView(APIView):
         return Response(formatted_response, status=status.HTTP_200_OK)
 
 
-class NowView(APIView):
-    def get(self, request, format=None):
+class NowView(viewsets.GenericViewSet, mixins.ListModelMixin):
+    serializer_class = serializers.CustomResponseSerializer
+
+    def list(self, request, *args, **kwargs):
         jalali_responsse = JalaliNowContent()
         formatted_response = jalali_responsse.get_pairs()
         formatted_response["status_code"] = status.HTTP_200_OK
+
         return Response(formatted_response, status=status.HTTP_200_OK)
+        return super().list(request, *args, **kwargs)
+
+# class NowView(APIView):
+#     def get(self, request, format=None):
+#         jalali_responsse = JalaliNowContent()
+#         formatted_response = jalali_responsse.get_pairs()
+#         formatted_response["status_code"] = status.HTTP_200_OK
+#         return Response(formatted_response, status=status.HTTP_200_OK)
 
 
 class NowPersianDigitView(APIView):
