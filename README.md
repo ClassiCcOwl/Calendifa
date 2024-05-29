@@ -16,5 +16,6 @@ Now its available on [api.calendifa.ir](https://api.calendifa.ir)
 
 - [x] Get current time and date
 - [x] Add persian view response
+- [x] Add serializer for Now view done by [Ownen](https://github.com/isOwn3n)
 - [ ] Add formating features
 - [ ] Add jalali calendar
